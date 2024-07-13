@@ -21,19 +21,7 @@ Output:
 
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Solution with Immediately Invoked Function Expression (IIFE) and explicitly declared current array
+// Solution with Immediately Invoked Function Expression (IIFE) and explicitly declared current array, backtracking 
 
 function allSubsets(nums) {
   const result = [];
@@ -55,23 +43,26 @@ function allSubsets(nums) {
   return result;
 }
 
-console.log(allSubsets([1, 7, 4])); 
-console.log(allSubsets(["a","b","c"]));
+// Test cases
+console.log("allSubsets:", allSubsets([1, 7, 4]));
+console.log("allSubsets:", allSubsets(["a","b","c"]));
 
-function subsets(nums) {
+
+// Solution with explicitly invoked helper function and backtracking
+function allSubsetsTwo(nums) {
   const result = [];
 
   function generateSubset(index, currentSubset) {
-      // base case where we have reached the end of the array
+      // Base case: if we've considered all elements / reached the end of the array
       if (index === nums.length) {
           result.push([...currentSubset]); // make a copy of the current subset
           return;
       }
 
-      // Exclude the current element
+      // Exclude the current element (leave it)
       generateSubset(index + 1, currentSubset);
 
-      // Include the current element
+      // Include the current element (take it)
       currentSubset.push(nums[index]); // Choose
       generateSubset(index + 1, currentSubset); // Explore
       currentSubset.pop();  // Backtrack
@@ -81,9 +72,32 @@ function subsets(nums) {
   return result;
 }
 
-// Example usage:
-const nums = [1, 7, 4];
-const letters = ["a", "b", "c"];
+// Test cases
+console.log("allSubsetsTwo:", allSubsetsTwo([1, 7, 4]));
+console.log("allSubsetsTwo:", allSubsetsTwo(["a", "b", "c"]));
 
-console.log(subsets(nums));
-console.log(subsets(letters));
+// Solution with spread operator and new arrays instead of backtracking
+function allSubsetsSpreadOperator(nums) {
+  const result = [];
+
+  function generateSubset(index, currentSubset) {
+      // Base case: if we've considered all elements // reached the end of the array
+      if (index === nums.length) {
+          result.push(currentSubset); // Add the current subset to the result
+          return;
+      }
+
+      // Exclude the current element (leave it)
+      generateSubset(index + 1, [...currentSubset]);
+
+      // Include the current element (take it)
+      generateSubset(index + 1, [...currentSubset, nums[index]]);
+  }
+
+  generateSubset(0, []); // Start from the first element
+  return result;
+}
+
+// Test cases
+console.log("allSubsetsSpreadOperator:", allSubsetsSpreadOperator([1, 7, 4])); // Expected output: all subsets of [1, 7, 4]
+console.log("allSubsetsSpreadOperator:", allSubsetsSpreadOperator(["a", "b", "c"])); // Expected output: all subsets of ["a", "b", "c"]

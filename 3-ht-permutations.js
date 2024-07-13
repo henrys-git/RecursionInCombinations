@@ -34,12 +34,6 @@
 */
 
 
-
-
-
-
-
-
 function htPermutations(heads, tails) {
   const result = [];
 
@@ -56,6 +50,8 @@ function htPermutations(heads, tails) {
 
   return result;
 }
+
+// Time complexity - O(2^(m+n)) - the decision tree has 2 branches at each node
 
 console.log(htPermutations(2, 1));
 console.log(htPermutations(2, 2));

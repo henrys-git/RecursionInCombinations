@@ -29,15 +29,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 function partitionNumber(num) {
   const result = [];
   const current = [];

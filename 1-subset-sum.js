@@ -18,13 +18,20 @@ subsetSum([-4], -4) -> true
 
 */
 
-
-
+// Time complexity - O(2^n) - the decision tree has 2 branches at each node
+// Space complexity - O(n^2) - because the slice operation creates a new array at each recursive call and the maximum depth of the decision tree is n
 
 function subsetSum(nums, target) {
   // base cases
-  if (target === 0) return true;
-  if (!nums.length) return false;
+  if (target === 0) return true; // found a subset that sums up to target - running target on decision tree is 0
+  if (!nums.length) return false; // no more numbers to consider - running nums array n decision tree is empty
+
+
+  // uses short-circuiting to return true if either of the two recursive calls returns true
+  // if the first recursive call returns true, the second one is not executed
+  // if the first recursive call returns false, the second one is executed
+  // this allows us to traverse the decision tree in a depth-first manner
+  // the second option is what is driving the traversal, so if we reach a true - traversal stops
 
   return (subsetSum(nums.slice(1), target - nums[0]) // take it
           || // or
@@ -32,34 +39,23 @@ function subsetSum(nums, target) {
 }
 
 
-// function subsetSum(nums, target) {
-//   // Base cases
-//   if (target === 0) return true;
-//   if (nums.length === 0) return false;
-
-//   // Recursive cases
-//   return subsetSum(nums.slice(1), target - nums[0]) || subsetSum(nums.slice(1), target);
-// }
-
-
-
-
-
-
-
-
+/* Optimized version - no need to slice the array. uses an index parameter to keep track of the current position 
+in the array. This avoids the need to create new arrays during each recursive call.
+*/
 
 function subsetSumOptimized(nums, target, index = 0) {
   // base cases
   if (target === 0) return true;
   if (index === nums.length) return false;
 
-  return (subsetSum(nums, target - nums[index], index + 1) // take it
+  return (subsetSumOptimized(nums, target - nums[index], index + 1) // take it
           || // or
-          subsetSum(nums, target, index + 1)); // leave it
+          subsetSumOptimized(nums, target, index + 1)); // leave it
 }
 
 
+// Time complexity - O(2^n) - the decision tree has 2 branches at each node
+// Space complexity - O(n) - the maximum depth of the decision tree is n
 
 
 
