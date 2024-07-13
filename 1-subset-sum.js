@@ -32,6 +32,14 @@ function subsetSum(nums, target) {
 }
 
 
+// function subsetSum(nums, target) {
+//   // Base cases
+//   if (target === 0) return true;
+//   if (nums.length === 0) return false;
+
+//   // Recursive cases
+//   return subsetSum(nums.slice(1), target - nums[0]) || subsetSum(nums.slice(1), target);
+// }
 
 
 

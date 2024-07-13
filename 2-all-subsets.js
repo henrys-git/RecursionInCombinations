@@ -33,6 +33,7 @@ Output:
 
 
 
+// Solution with Immediately Invoked Function Expression (IIFE) and explicitly declared current array
 
 function allSubsets(nums) {
   const result = [];
@@ -54,4 +55,35 @@ function allSubsets(nums) {
   return result;
 }
 
-console.log(allSubsets([1,7,4]));
+console.log(allSubsets([1, 7, 4])); 
+console.log(allSubsets(["a","b","c"]));
+
+function subsets(nums) {
+  const result = [];
+
+  function generateSubset(index, currentSubset) {
+      // base case where we have reached the end of the array
+      if (index === nums.length) {
+          result.push([...currentSubset]); // make a copy of the current subset
+          return;
+      }
+
+      // Exclude the current element
+      generateSubset(index + 1, currentSubset);
+
+      // Include the current element
+      currentSubset.push(nums[index]); // Choose
+      generateSubset(index + 1, currentSubset); // Explore
+      currentSubset.pop();  // Backtrack
+  }
+
+  generateSubset(0, []); // start from the first element
+  return result;
+}
+
+// Example usage:
+const nums = [1, 7, 4];
+const letters = ["a", "b", "c"];
+
+console.log(subsets(nums));
+console.log(subsets(letters));
