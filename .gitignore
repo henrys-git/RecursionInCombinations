@@ -1,0 +1,22 @@
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore npm debug file
+npm-debug.log*
+
+# Ignore IDE/editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore environment variables file
+.env
+
+# Ignore any other system or editor-specific files that you don't want to include in the repo
