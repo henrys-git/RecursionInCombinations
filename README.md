@@ -1,9 +1,5 @@
 # Hack Hour Strategy - Recursions in Combinations
 
-## Plan
-- We will discuss strategies for approaching algorithm challenges and identify when we might want to use recursion in generating combinations.
-- We will explore several challenges conceptually, followed by the implementation of each in code.
-
 ## Why Recursion for Combinations?
 - Recursion is great when you can break the problem down into a smaller version of itself that ultimately reaches a base case, like whittling down a list or possibilities.
 - Generating combinations with recursion aligns well with the idea of "taking it" or "leaving it" and recursively calling for each of those cases.
